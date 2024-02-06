@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+textarea {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.left-side {
+    flex: 30%;
+    padding-right: 20px;
+}
+
+.right-side {
+    flex: 70%;
+    width: 100%;
+    height: 100px;
+}
+
+.email-body {
+    flex: 30%;
+    padding-top: 10px;
+}
+
+.query-box {
+    width: 100%;
+    height: 50x;
+    margin-bottom: 5px;
+}
+
+.result-div {
+    width: 100%;
+    height: 416px;
+    margin-bottom: 5px;
+}
+
+.result-div-2 {
+    width: 100%;
+    height: 280px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.button {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #3498db; /* Green */
+    border: none;
+    border-radius: 24px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: white;
+    box-shadow: 0 0 2px #3498db, 0 0 5px #3498db, 0 0 10px #3498db;
+    color: black;
+    border: 1px solid #3498db;
+}
+
+.loading-spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

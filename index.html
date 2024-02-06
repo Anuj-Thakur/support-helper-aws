@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Tickets and Email Draft Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Support Tickets and Email Draft Generator</h1>
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;"></div>
+    
+    <div class="flex-container">
+        <div class="left-side">
+            <label for="resultTextarea">Similar Tickets:</label>
+            <textarea class="result-div" id="resultTextarea" readonly></textarea>
+            
+        </div>
+        
+        <div class="right-side">
+            <label for="queryTextarea">Enter your query:</label>
+            <textarea class="query-box" id="queryTextarea"></textarea>
+            
+            <button  class="button" onclick="getSimilarTickets()">Search</button>
+            <button class="button" onclick="generateEmailDraft()">Generate Email Draft</button>
+            
+            <div class="email-body">
+                <label for="emailTextarea">Draft Email:</label>
+                <textarea class="result-div-2" id="emailTextarea" readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
