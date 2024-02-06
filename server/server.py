@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
+import uvicorn
 from contants import embeddings_path, EMBEDDING_MODEL, GPT_MODEL
 
 from dotenv import load_dotenv
@@ -10,6 +10,7 @@ import pandas as pd
 from scipy import spatial
 import ast
 
+app = FastAPI()
 load_dotenv()
 client = OpenAI()
 
@@ -232,3 +233,6 @@ async def generate_email_draft(similarTickets: dict):
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail="Internal Server Error")
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
