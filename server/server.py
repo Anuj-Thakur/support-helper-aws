@@ -13,8 +13,6 @@ import ast
 load_dotenv()
 client = OpenAI()
 
-app = FastAPI()
-
 df = pd.read_csv(embeddings_path)
 
 # convert embeddings from CSV str type back to list type
