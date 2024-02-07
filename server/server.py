@@ -9,9 +9,11 @@ from openai import OpenAI
 import pandas as pd
 from scipy import spatial
 import ast
+import os
 
 load_dotenv()
 client = OpenAI()
+OpenAI.api_key = os.getenv('OPENAI_API_KEY')
 
 df = pd.read_csv(embeddings_path)
 
