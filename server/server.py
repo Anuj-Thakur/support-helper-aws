@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import uvicorn
+
 from contants import embeddings_path, EMBEDDING_MODEL, GPT_MODEL
 
 from dotenv import load_dotenv
@@ -10,7 +10,6 @@ import pandas as pd
 from scipy import spatial
 import ast
 
-app = FastAPI()
 load_dotenv()
 client = OpenAI()
 
@@ -64,7 +63,7 @@ def get_similar_score(base_query, base_contexts, relatedness_fn):
 
         relatedness = relatedness_fn(query_embedding, context_embedding)
 
-        if relatedness>0.85:
+        if relatedness>0.80:
             print("Score: ", relatedness)
             similar_contexts.append(context)
 
@@ -190,6 +189,8 @@ async def generate_email_draft(similarTickets: dict):
 
     try:
         query = similarTickets['query']
+        case_id = similarTickets['caseId']
+        case_number = similarTickets['caseNumber']
         contexts = [f"Question: {con['question']}\nAnswer:\n{con['answer']}" for con in similarTickets['relatedCases']]
 
         most_related_contexts = get_similar_score(query, contexts, relatedness_fn)
@@ -228,11 +229,12 @@ async def generate_email_draft(similarTickets: dict):
         
         print(email_draft)
 
-        return {"email_draft": email_draft}
+        return {
+            "case_id": case_id,
+            "case_number": case_number,
+            "email_draft": [email_draft]
+            }
 
     except Exception as e:
         print(e)
         raise HTTPException(status_code=500, detail="Internal Server Error")
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
